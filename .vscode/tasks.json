@@ -1,0 +1,85 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build",
+      "command": "dotnet",
+      "type": "process",
+      "args": [
+        "build",
+        "${workspaceFolder}/server/Topics.Web/Topics.Web.csproj",
+        "/property:GenerateFullPaths=true",
+        "/consoleloggerparameters:NoSummary"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "dev",
+      "dependsOrder": "parallel",
+      "dependsOn": [
+        "server",
+        "init"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "server",
+      "type": "shell",
+      "command": "npm run watch:server",
+      "presentation": {
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "core",
+      "type": "shell",
+      "command": "npm run watch",
+      "isBackground": true,
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "base": "$tsc-watch",
+        "applyTo": "allDocuments",
+        "fileLocation": "relative",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^(?:File change detected. Starting incremetal compilation...)",
+          "endsPattern": "^(?:Compilation complete. Watching for file changes...)"
+        }
+      }
+    },
+    {
+      "label": "init",
+      "dependsOn": [
+        "core",
+        "apps"
+      ],
+      "dependsOrder": "sequence"
+    },
+    {
+      "label": "apps",
+      "dependsOn": [
+        "docs",
+        "topics"
+      ],
+      "dependsOrder": "parallel"
+    },
+    {
+      "label": "docs",
+      "type": "shell",
+      "command": "npm run start:docs",
+      "presentation": {
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "topics",
+      "type": "shell",
+      "command": "npm run start:topics",
+      "presentation": {
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.min-full-height {
+  min-height: 100%;
+}
+
+.app-frame {
+  height: 100%;
+}
+
+.app-container {
+  overflow: auto;
+  height: calc(100% - 64px);
+}
+
+.docs-container {
+  overflow: auto;
+  height: 100%;
+}
+
+section.toolbar-container {
+  height: calc(100% - 64px);
+}
+
+section.scroll-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.scrollable {
+  overflow: auto;
+}
+
+table.docs-table {
+  margin: 4px 4px 12px;
+
+  th,
+  td {
+    padding: 4px;
+  }
+}
+
+mat-divider.mat-divider-vertical {
+  align-self: stretch;
+}
+
+mat-toolbar.mat-toolbar mat-form-field.mat-form-field {
+  font-size: 12px;
+
+  label.mat-form-field-label {
+    font-weight: bold;
+  }
+}
+
+mat-toolbar.mat-toolbar.app-toolbar {
+  padding: 0 8px;
+
+  button.mat-icon-button,
+  mat-form-field.mat-form-field {
+    margin: 0 8px 0 0;
+  }
+
+  button.mat-stroked-button {
+    margin: 0 4px;
+  }
+
+  button.mat-stroked-button:first-child {
+    margin-left: 8px;
+  }
+
+  span.header {
+    margin-right: 24px;
+  }
+}
+
+nav.mat-tab-nav-bar.wrapped div.mat-tab-links {
+  flex-wrap: wrap;
+}
+
+nav.mat-tab-nav-bar.scrolled {
+  white-space: nowrap;
+  overflow: auto;
+
+  div.mat-tab-links {
+    display: block;
+  }
+}
+
+a.mat-tab-link,
+mat-tab.mat-tab {
+  min-width: 80px;
+}
+
+mat-tab-group.mat-tab-group.flexible div.mat-tab-labels {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-items: space-evenly;
+
+  div.mat-tab-label {
+    flex-grow: 1;
+    flex-basis: auto;
+    min-width: 0;
+  }
+}
+
+nav.mat-tab-nav-bar.flexible div.mat-tab-links {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-items: space-evenly;
+
+  a.mat-tab-link {
+    flex-grow: 1;
+    flex-basis: auto;
+    min-width: 0;
+  }
+}
+
+button.mat-icon-button.small {
+  height: 36px;
+  width: 36px;
+  line-height: 36px;
+
+  mat-icon.mat-icon {
+    transform: scale(0.8);
+  }
+}
+
+.mat-menu-panel.app-menu {
+  width: 180px;
+}
+
+@media (min-width: 0) and (max-width: 599px) {
+  .app-container {
+    height: calc(100% - 56px);
+  }
+
+  .section.toolbar-container {
+    height: calc(100% - 56px);
+  }
+}

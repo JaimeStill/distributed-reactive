@@ -1,0 +1,271 @@
+.bold {
+  font-weight: bold;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.no-display {
+  display: none;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.sticky-top {
+  position: sticky;
+  top: 0;
+}
+
+.sticky-right {
+  position: sticky;
+  right: 0;
+}
+
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+}
+
+.sticky-left {
+  position: sticky;
+  left: 0;
+}
+
+.border-none {
+  border-style: none!important;
+}
+
+.border-solid {
+  border-style: solid!important;
+}
+
+.border-dashed {
+  border-style: dashed!important;
+}
+
+.border-dotted {
+  border-style: dotted!important;
+}
+
+.border-double {
+  border-style: double!important;
+}
+
+.border-x-none {
+  border-top-style: none!important;
+  border-bottom-style: none!important;
+}
+
+.border-y-none {
+  border-left-style: none!important;
+  border-right-style: none!important;
+}
+
+.border-x-solid {
+  border-top-style: solid!important;
+  border-bottom-style: solid!important;
+}
+
+.border-y-solid {
+  border-left-style: solid!important;
+  border-right-style: solid!important;
+}
+
+.border-x-dashed {
+  border-top-style: dashed!important;
+  border-bottom-style: dashed!important;
+}
+
+.border-y-dashed {
+  border-left-style: dashed!important;
+  border-right-style: dashed!important;
+}
+
+.border-x-dotted {
+  border-top-style: dotted!important;
+  border-bottom-style: dotted!important;
+}
+
+.border-y-dotted {
+  border-left-style: dotted!important;
+  border-right-style: dotted!important;
+}
+
+.border-x-double {
+  border-top-style: double!important;
+  border-bottom-style: double!important;
+}
+
+.border-y-double {
+  border-left-style: double!important;
+  border-right-style: double!important;
+}
+
+.overflow {
+  overflow: auto;
+}
+
+.overflow-x {
+  overflow-x: auto;
+}
+
+.overflow-y {
+  overflow-y: auto;
+}
+
+.no-resize {
+  resize: none!important;
+}
+
+.resize {
+  resize: both!important;
+}
+
+.resize-horizontal {
+  resize: horizontal!important;
+}
+
+.resize-vertical {
+  resize: vertical!important;
+}
+
+.cursor-pointer {
+  cursor: pointer!important;
+}
+
+.cursor-default {
+  cursor: default!important;
+}
+
+.backdropped {
+  transition: backdrop-filter 100ms ease-in;
+}
+
+.rounded {
+  border-radius: 4px;
+}
+
+.rounded-right {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.rounded-left {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.rounded-top {
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+}
+
+.rounded-bottom {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.rounded-top-left {
+  border-top-left-radius: 4px;
+}
+
+.rounded-top-right {
+  border-top-right-radius: 4px;
+}
+
+.rounded-bottom-right {
+  border-bottom-right-radius: 4px;
+}
+
+.rounded-bottom-left {
+  border-bottom-left-radius: 4px;
+}
+
+.clip-top {
+  clip-path: inset(0, -5px, -5px, -5px);
+}
+
+.clip-right {
+  clip-path: inset(-5px, 0, -5px, -5px);
+}
+
+.clip-bottom {
+  clip-path: inset(-5px, -5px, 0, -5px);
+}
+
+.clip-left {
+  clip-path: inset(-5px, -5px, -5px, 0);
+}
+
+.no-outline {
+  outline: 0;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+@for $i from 0 through 24 {
+  .p#{$i} {
+    padding: #{$i}px!important;
+  }
+
+  .px#{$i} {
+    padding-left: #{$i}px!important;
+    padding-right: #{$i}px!important;
+  }
+
+  .py#{$i} {
+    padding-top: #{$i}px!important;
+    padding-bottom: #{$i}px!important;
+  }
+
+  .pt#{$i} {
+    padding-top: #{$i}px!important;
+  }
+
+  .pr#{$i} {
+    padding-right: #{$i}px!important;
+  }
+
+  .pb#{$i} {
+    padding-bottom: #{$i}px!important;
+  }
+
+  .pl#{$i} {
+    padding-left: #{$i}px!important;
+  }
+
+  .m#{$i} {
+    margin: #{$i}px!important;
+  }
+
+  .mx#{$i} {
+    margin-left: #{$i}px!important;
+    margin-right: #{$i}px!important;
+  }
+
+  .my#{$i} {
+    margin-top: #{$i}px!important;
+    margin-bottom: #{$i}px!important;
+  }
+
+  .mt#{$i} {
+    margin-top: #{$i}px!important;
+  }
+
+  .mr#{$i} {
+    margin-right: #{$i}px!important;
+  }
+
+  .mb#{$i} {
+    margin-bottom: #{$i}px!important;
+  }
+
+  .ml#{$i} {
+    margin-left: #{$i}px!important;
+  }
+}

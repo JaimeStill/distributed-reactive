@@ -1,0 +1,2 @@
+call npm install @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/flex-layout @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/router @microsoft/signalr hammerjs marked prismjs rxjs tslib zone.js
+call npm install -D @angular-devkit/build-angular @angular/cli @angular/compiler-cli @angular/language-service @fortawesome/fontawesome-free @types/marked @types/node @types/prismjs ng-packagr prism-themes roboto-fontface ts-node typescript

@@ -1,0 +1,28 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+div[class*="app-light"] snack-bar-container.mat-snack-bar-container.snacker {
+  background-color: #ffffff!important;
+}
+
+div[class*="app-light"] simple-snack-bar.mat-simple-snackbar,
+div[class*="app-light"] .snacker div.mat-simple-snackbar-action {
+  color: #3e3e3e;
+}
+
+div[class*="app-dark"] snack-bar-container.mat-snack-bar-container.snacker {
+  background-color: #3e3e3e!important;
+}
+
+div[class*="app-dark"] simple-snack-bar.mat-simple-snackbar,
+div[class*="app-dark"] .snacker div.mat-simple-snackbar-action {
+  color: #e1e1e1;
+}
+
+@mixin style-snacker($palette) {
+  @each $key, $value in $palette {
+    div[class*="app-#{map.get($value, 'theme')}"] .snacker-#{$key} simple-snack-bar.mat-simple-snackbar {
+      color: map.get($value, 'color');
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@use '@angular/material' as mat;
+
+@for $i from 0 through 12 {
+  .el-#{$i} {
+    @include mat.elevation($i);
+  }
+}
+
+.elevated {
+  @include mat.elevation-transition;
+  @include mat.elevation(2);
+
+  &:hover {
+    @include mat.elevation(4);
+  }
+}

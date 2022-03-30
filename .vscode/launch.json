@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug API",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/server/Topics.Web/bin/Debug/net6.0/Topics.Web.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/server/Topics.Web",
+      "console": "internalConsole",
+      "stopAtEntry": false,
+      "requireExactSource": false
+    }
+  ]
+}
