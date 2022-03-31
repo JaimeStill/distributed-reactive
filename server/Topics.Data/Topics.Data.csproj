@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Topics.Core\Topics.Core.csproj" />
     <ProjectReference Include="..\Topics.Identity\Topics.Identity.csproj" />
+    <ProjectReference Include="..\Topics.Identity.Mock\Topics.Identity.Mock.csproj" />
   </ItemGroup>
 
 </Project>

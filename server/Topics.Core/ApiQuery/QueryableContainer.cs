@@ -1,5 +1,7 @@
 namespace Topics.Core.ApiQuery;
 
+using Topics.Core.Extensions;
+
 using Microsoft.EntityFrameworkCore;
 
 public class QueryContainer<T>
@@ -7,7 +9,7 @@ public class QueryContainer<T>
     const int DEFAULT_PAGE_SIZE = 20;
 
     private IQueryable<T> queryable;
-    private QueryOptions options;
+    private readonly QueryOptions options;
 
     public IQueryable<T> Queryable => queryable;
     public QueryOptions Options => options;
@@ -62,7 +64,7 @@ public class QueryContainer<T>
 
         if (totalCount <= ((Options.Page - 1) * Options.PageSize))
         {
-            Options.Page = (int)System.Math.Ceiling((decimal)totalCount / Options.PageSize);
+            Options.Page = (int)Math.Ceiling((decimal)totalCount / Options.PageSize);
             Options.Page = Options.Page == 0
                 ? 1
                 : Options.Page;
@@ -79,11 +81,34 @@ public class QueryContainer<T>
                 .ToListAsync()
         };
     }
+
+    public async Task<QueryResult<T>> Execute(Func<IQueryable<T>, string, IQueryable<T>> search) =>
+        await Query((data, s) =>
+            data.SetupSearch(s, (values, term) =>
+                search(values, term)
+            )
+        );
+
+    public static async Task<QueryResult<T>> GenerateQuery(
+        string page,
+        string pageSize,
+        string search,
+        string sort,
+        IQueryable<T> data,
+        Func<IQueryable<T>, string, IQueryable<T>> func
+    )
+    {
+        var container = new QueryContainer<T>(
+            data, page, pageSize, search, sort
+        );
+
+        return await container.Execute(func);
+    }
 }
 
 public static class QueryExtensions
 {
-    public static QueryResult<C> Cast<T,C>(this QueryResult<T> result, List<C> data) => new QueryResult<C>
+    public static QueryResult<C> Cast<T,C>(this QueryResult<T> result, List<C> data) => new()
     {
         Data = data,
         Page = result.Page,

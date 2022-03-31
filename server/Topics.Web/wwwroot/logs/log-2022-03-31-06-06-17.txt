@@ -1,0 +1,52 @@
+ContextDetails
+
+User: ehowell
+Local IP: ::1
+Local Port: 5000
+Remote IP: ::1
+Remote Port: 60252
+Content Type: 
+URL: http://localhost:5000/api/Comment/QueryComments/1?page=1&pageSize=20&search=test&sort=dateCreated
+
+Headers
+Accept : application/json;odata.metadata=minimal;odata.streaming=true
+Connection : keep-alive
+Host : localhost:5000
+User-Agent : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.74 Safari/537.36 Edg/99.0.1150.55
+Accept-Encoding : gzip, deflate, br
+Accept-Language : en-US,en;q=0.9
+Cookie : .AspNetCore.Cookies=CfDJ8Do5uD1FK3NPl-_AHObv71s-tGUFhAwKsg0h03F3QnEiWtocLguiKgYy2XiUYnP4o-7sA6BqErG5y54eBlwbSyIakkICY18kp6pwvrSAI6wEoF9n24WWaBR5WKOdoyNhiJpdemzPEPGvQSeZ0qYJUzT2FVcYtNlJMMjwMLyQKKx9PnX4zZq_-vd-N5U42NkgZoPiksNii5zW--N5xQwLWGhE7sdZUgYVS6oBH7Bd6Vq9Smse8ZN13Xt9xdO-k152cRJs8xARqcT0dd0Kipw6-piabG2HXQm8CfrjVOYrPRA0Hj3oTMmuJ30mMsCS1ZF7r6ZuM-tbOZjDYMytQcHOcPhUBh_Is544SyGAsnLnxhWkYMCcYgLBHCtWoKwk10GpgYrVjes601ye1Q3yNpj_XkxdhUjgxw_1C7b7r1Aj0LqqKivTDeEmEI5E4cWlOPI1YU3dvojKy8NBgka8XzpndkU
+Referer : http://localhost:5000/swagger/index.html
+sec-ch-ua : " Not A;Brand";v="99", "Chromium";v="99", "Microsoft Edge";v="99"
+DNT : 1
+sec-ch-ua-mobile : ?0
+sec-ch-ua-platform : "Windows"
+Sec-Fetch-Site : same-origin
+Sec-Fetch-Mode : cors
+Sec-Fetch-Dest : empty
+
+Exception Details
+The LINQ expression 'MaterializeCollectionNavigation(
+    Navigation: Comment.Children,
+    subquery: NavigationExpansionExpression
+        Source: DbSet<Comment>()
+            .Where(c0 => EF.Property<int?>(c.Outer, "Id") != null && object.Equals(
+                objA: (object)EF.Property<int?>(c.Outer, "Id"), 
+                objB: (object)EF.Property<int?>(c0, "ParentId")))
+        PendingSelector: c0 => NavigationTreeExpression
+            Value: EntityReference: Comment
+            Expression: c0
+        .Where(i => EF.Property<int?>(NavigationTreeExpression
+            Value: EntityReference: Comment | IncludePaths: 
+                Root
+                \-> Author
+            Expression: c.Outer, "Id") != null && object.Equals(
+            objA: (object)EF.Property<int?>(NavigationTreeExpression
+                Value: EntityReference: Comment | IncludePaths: 
+                    Root
+                    \-> Author
+                Expression: c.Outer, "Id"), 
+            objB: (object)EF.Property<int?>(i, "ParentId"))))
+    .AsQueryable()
+    .Search(__search_2)
+    .Any()' could not be translated. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to 'AsEnumerable', 'AsAsyncEnumerable', 'ToList', or 'ToListAsync'. See https://go.microsoft.com/fwlink/?linkid=2101038 for more information.

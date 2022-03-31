@@ -22,8 +22,12 @@ public class UploadController : Controller
     #region Image
 
     [HttpGet("[action]")]
-    public string GetDefaultImage() =>
-        config.UrlBasePath.GetDefaultImage();
+    public string GetDefaultTopicImage() =>
+        config.UrlBasePath.GetDefaultTopicImage();
+
+    [HttpGet("[action]")]
+    public string GetDefaultUserImage() =>
+        config.UrlBasePath.GetDefaultUserImage();
 
     #endregion
 

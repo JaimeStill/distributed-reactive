@@ -98,8 +98,8 @@ namespace Topics.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TopicId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    IsAdmin = table.Column<int>(type: "int", nullable: false),
-                    IsBanned = table.Column<int>(type: "int", nullable: false)
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: false),
+                    IsBanned = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {

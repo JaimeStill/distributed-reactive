@@ -96,7 +96,7 @@ public static class CoreExtensions
 
     public static string UrlEncode(this string url, string pattern, string replace = "")
     {
-        var friendlyUrl = Regex.Replace(url, @"\s", "-").ToLower();
+        var friendlyUrl = Regex.Replace(url, @"\s", string.Empty).ToLower();
         friendlyUrl = Regex.Replace(friendlyUrl, pattern, replace);
         return friendlyUrl;
     }

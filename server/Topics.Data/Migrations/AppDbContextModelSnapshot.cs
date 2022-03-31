@@ -159,11 +159,11 @@ namespace Topics.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("IsAdmin")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("IsBanned")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("bit");
 
                     b.Property<int>("TopicId")
                         .HasColumnType("int");

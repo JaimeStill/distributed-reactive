@@ -86,7 +86,7 @@ public class MockProvider : IUserProvider
 
     private static readonly string baseDn = "CN=Users,DC=Mock,DC=Net";
 
-    private static readonly IQueryable<AdUser> AdUsers = new List<AdUser>()
+    public static readonly IQueryable<AdUser> AdUsers = new List<AdUser>()
     {
         new AdUser
         {

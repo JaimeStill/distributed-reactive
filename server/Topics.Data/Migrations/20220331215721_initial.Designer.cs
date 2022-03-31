@@ -12,7 +12,7 @@ using Topics.Data;
 namespace Topics.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20220330224432_initial")]
+    [Migration("20220331215721_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -161,11 +161,11 @@ namespace Topics.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("IsAdmin")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
 
-                    b.Property<int>("IsBanned")
-                        .HasColumnType("int");
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("bit");
 
                     b.Property<int>("TopicId")
                         .HasColumnType("int");

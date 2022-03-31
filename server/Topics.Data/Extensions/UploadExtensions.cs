@@ -24,7 +24,9 @@ public static class UploadExtensions
 
     #region Image
 
-    public static string GetDefaultImage(this string url) => $"{url}default.png";
+    public static string GetDefaultTopicImage(this string url) => $"{url}topic.png";
+
+    public static string GetDefaultUserImage(this string url) => $"{url}user.png";
 
     #endregion
 
@@ -184,7 +186,7 @@ public static class UploadExtensions
     static bool Validate(this IFormFileCollection files, string filetype = null)
     {
         if (!files.Any())
-            throw new AppException("No files were provided for upload", ExceptionType.Validation);
+            throw new AppException("No files were provided for upload");
 
         if (!string.IsNullOrEmpty(filetype))
         {
@@ -195,7 +197,7 @@ public static class UploadExtensions
                 );
 
             if (invalid)
-                throw new AppException($"All uploads should be of type {filetype}", ExceptionType.Validation);
+                throw new AppException($"All uploads should be of type {filetype}");
         }
 
         return true;
