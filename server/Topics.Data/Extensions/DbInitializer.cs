@@ -15,6 +15,7 @@ public static class DbInitializer
         var users = await db.SeedUsers();
         var topic = await db.SeedTopic(users.lgraham);
         var post = await db.SeedPost(topic, users.lgraham);
-        await db.SeedComments(post, users);
+        var comments = await db.SeedComments(post, users);
+        await db.SeedVotes(post, comments, users);
     }
 }

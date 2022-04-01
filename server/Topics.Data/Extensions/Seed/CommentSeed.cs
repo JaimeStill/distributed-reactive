@@ -6,9 +6,19 @@ using Microsoft.EntityFrameworkCore;
 
 public static class CommentSeed
 {
-    public static async Task SeedComments(this AppDbContext db, Post post, (User lgraham, User ehowell) users)
+    public static async Task<List<Comment>> SeedComments(this AppDbContext db, Post post, (User lgraham, User ehowell) users)
     {
-        if (!await db.Comments.AnyAsync(x => x.PostId == post.Id))
+        if (await db.Comments.AnyAsync(x => x.PostId == post.Id))
+        {
+            Console.WriteLine("Retrieving comments...");
+
+            var comments = await db.Comments
+                .Where(x => x.PostId == post.Id)
+                .ToListAsync();
+
+            return comments;
+        }
+        else
         {
             Console.WriteLine("Seeding comments...");
 
@@ -52,6 +62,8 @@ public static class CommentSeed
 
             await db.Comments.AddRangeAsync(comments);
             await db.SaveChangesAsync();
+
+            return comments;
         }
     }
 }
