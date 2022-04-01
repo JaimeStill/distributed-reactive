@@ -72,7 +72,7 @@ public class Startup
             services.AddSingleton(new UploadConfig
             {
                 DirectoryBasePath = $@"{Environment.ContentRootPath}/wwwroot/files/",
-                UrlBasePath = "/files/"
+                UrlBasePath = "files/"
             });
 
             services

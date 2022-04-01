@@ -24,9 +24,11 @@ public static class UploadExtensions
 
     #region Image
 
-    public static string GetDefaultTopicImage(this string url) => $"{url}topic.png";
+    public static string GetDefaultTopicImage(this string url) =>
+        $"{url}topic.svg";
 
-    public static string GetDefaultUserImage(this string url) => $"{url}user.png";
+    public static string GetDefaultUserImage(this string url) =>
+        $"{url}user.svg";
 
     #endregion
 

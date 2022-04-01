@@ -4,6 +4,10 @@ public class User
 {
     public int Id { get; set; }
 
+    public int DefaultPageSize { get; set; }
+    public bool UseDarkTheme { get; set; }
+    public DateTime DateJoined { get; set; }
+
     /*
         Properties mapped from Topics.Identity.AdUser.cs
     */
@@ -18,9 +22,6 @@ public class User
     public string UserPrincipalName { get; set; }
     public string VoiceTelephoneNumber { get; set; }
     public string SocketName { get; set; }
-    public int DefaultPageSize { get; set; }
-    public bool UseDarkTheme { get; set; }
-    public DateTime DateJoined { get; set; }
 
     /* One to One */
     public UserImage Image { get; set; }
