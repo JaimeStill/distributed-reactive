@@ -120,18 +120,21 @@ public static class IdentityExtensions
         return true;
     }
 
+    public static User ToUser(this AdUser adUser)
+    {
+        var user = new User();
+        adUser.MergeUser(user);
+        return user;
+    }
+
+    public static async Task<int> GetUserId(this IUserProvider provider, AppDbContext db) =>
+        await db.GetUserIdByGuid(provider.CurrentUser.Guid.Value);
+
     static async Task<User> SyncUser(this AppDbContext db, AdUser adUser, User user)
     {
         adUser.MergeUser(user);
         await db.UpdateUser(user);
 
-        return user;
-    }
-
-    public static User ToUser(this AdUser adUser)
-    {
-        var user = new User();
-        adUser.MergeUser(user);
         return user;
     }
 

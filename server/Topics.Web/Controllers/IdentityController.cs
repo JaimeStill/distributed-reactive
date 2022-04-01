@@ -50,7 +50,7 @@ public class IdentityController : Controller
     public async Task<User> GetUser([FromRoute]int id) => await db.GetUser(id);
 
     [HttpGet("[action]")]
-    public async Task<int> GetUserIdByGuid() => await db.GetUserIdByGuid(provider.CurrentUser.Guid.Value);
+    public async Task<int> GetUserIdByGuid() => await provider.GetUserId(db);
 
     [HttpGet("[action]")]
     public async Task<User> SyncUser() => await provider.CurrentUser.SyncUser(db);

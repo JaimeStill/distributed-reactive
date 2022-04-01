@@ -7,25 +7,53 @@ using Microsoft.EntityFrameworkCore;
 
 public static class UserSeed
 {
-    public static async Task<List<User>> SeedUsers(this AppDbContext db)
+    public static async Task<(User lgraham, User ehowell)> SeedUsers(this AppDbContext db)
     {
-        if (await db.Users.AnyAsync())
+        if (await db.VerifyUsers())
         {
             Console.WriteLine("Retrieving users...");
-            return await db.Users.ToListAsync();
+
+            var lgraham = await db.Users
+                .FirstOrDefaultAsync(x => x.SamAccountName == "lgraham");
+
+            var ehowell = await db.Users
+                .FirstOrDefaultAsync(x => x.SamAccountName == "ehowell");
+
+            return (lgraham, ehowell);
         }
         else
         {
             Console.WriteLine("Seeding users...");
 
-            var users = MockProvider.AdUsers
+            var lgraham = MockProvider
+                .AdUsers
+                .Where(x => x.SamAccountName == "lgraham")
                 .Select(x => x.ToUser())
-                .ToList();
+                .FirstOrDefault();
 
-            await db.Users.AddRangeAsync(users);
+            var ehowell = MockProvider
+                .AdUsers
+                .Where(x=> x.SamAccountName == "ehowell")
+                .Select(x => x.ToUser())
+                .FirstOrDefault();
+
+            await db.Users.AddRangeAsync(lgraham, ehowell);
             await db.SaveChangesAsync();
 
-            return users;
+            return (lgraham, ehowell);
         }
+    }
+
+    static async Task<bool> VerifyUsers(this AppDbContext db)
+    {
+        if (
+            await db.Users.AnyAsync(x => x.SamAccountName == "lgraham")
+            && await db.Users.AnyAsync(x => x.SamAccountName == "ehowell")
+        )
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }

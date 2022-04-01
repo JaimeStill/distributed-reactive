@@ -20,6 +20,7 @@ public static class TopicExtensions
             x.Name.ToLower().Contains(search.ToLower())
             || x.Url.ToLower().Contains(search.ToLower())
             || x.Owner.DisplayName.ToLower().Contains(search.ToLower())
+            || x.Owner.EmailAddress.ToLower().Contains(search.ToLower())
         );
 
     public static async Task<string> GetTopicImage(this AppDbContext db, int topicId, string url)
@@ -80,8 +81,6 @@ public static class TopicExtensions
 
     public static async Task<int> Save(this Topic topic, AppDbContext db, IUserProvider provider)
     {
-        var userId = await db.GetUserIdByGuid(provider.CurrentUser.Guid.Value);
-
         if (await topic.Validate(db))
         {
             topic.Url = topic.Name.UrlEncode();
@@ -89,7 +88,10 @@ public static class TopicExtensions
             if (topic.Id > 0)
                 await topic.Update(db);
             else
+            {
+                var userId = await provider.GetUserId(db);
                 await topic.Add(db, userId);
+            }
 
             return topic.Id;
         }
@@ -142,7 +144,10 @@ public static class TopicExtensions
     #region TopicUser
 
     static IQueryable<User> Search(this IQueryable<User> users, string search) =>
-        users.Where(x => x.DisplayName.ToLower().Contains(search.ToLower()));
+        users.Where(x =>
+            x.DisplayName.ToLower().Contains(search.ToLower())
+            || x.EmailAddress.ToLower().Contains(search.ToLower())
+        );
 
     public static async Task<QueryResult<User>> QueryTopicUsers(
         this AppDbContext db,

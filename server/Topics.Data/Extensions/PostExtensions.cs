@@ -23,6 +23,7 @@ public static class PostExtensions
             || x.Text.ToLower().Contains(search.ToLower())
             || x.Url.ToLower().Contains(search.ToLower())
             || x.Author.DisplayName.ToLower().Contains(search.ToLower())
+            || x.Author.EmailAddress.ToLower().Contains(search.ToLower())
             || x.Topic.Name.ToLower().Contains(search.ToLower())
         );
 
@@ -100,8 +101,6 @@ public static class PostExtensions
 
     public static async Task<Post> Save(this Post post, AppDbContext db, IUserProvider provider)
     {
-        var userId = await db.GetUserIdByGuid(provider.CurrentUser.Guid.Value);
-
         if (post.Validate())
         {
             post.Url = await post.GenerateUrl(db);
@@ -109,7 +108,10 @@ public static class PostExtensions
             if (post.Id > 0)
                 await post.Update(db);
             else
+            {
+                var userId = await provider.GetUserId(db);
                 await post.Add(db, userId);
+            }
 
             return post;
         }
