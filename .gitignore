@@ -3,6 +3,10 @@
 .npm_cache
 nuget-packages
 
+!**/wwwroot/files
+!**/wwwroot/files/*.svg
+**/wwwroot/files/
+
 # compiled output
 /dist
 /tmp
