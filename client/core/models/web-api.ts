@@ -15,6 +15,16 @@ import { ServerConfig } from '../config';
   assign: call a get and assign the result to the
           provided stream.
 
+  assignText: call getText and assign the result to
+              the provided stream.
+
+  assignUrl: call getUrl and assign the result to
+             the provided stream.
+
+  retrieve: wrap a get call with a type of provided
+            return data around a promise that resolves
+            with the type of data that is received.
+
   action: wrap a get call with no return data around
           a boolean promise. See UploadApi.removeTopicImage.
 
@@ -59,7 +69,38 @@ export class WebApi {
     .subscribe({
       next: (data: T) => stream.next(data),
       error: this.snacker.error
-    })
+    });
+
+  assignText = (
+    url: string,
+    stream: BehaviorSubject<string>
+  ) => this.getText(url)
+    .subscribe({
+      next: (data: string) => stream.next(data),
+      error: this.snacker.error
+    });
+
+  assignUrl = (
+    url: string,
+    stream: BehaviorSubject<string>
+  ) => this.getUrl(url)
+    .subscribe({
+      next: (data: string) => stream.next(data),
+      error: this.snacker.error
+    });
+
+  retrieve = <T>(
+    url: string
+  ): Promise<T> => new Promise((res) => {
+    this.get(url)
+      .subscribe({
+        next: (data: T) => res(data),
+        error: (err: any) => {
+          this.snacker.error(err);
+          res(null)
+        }
+      })
+  });
 
   action = (
     url: string,
@@ -77,6 +118,7 @@ export class WebApi {
         }
       })
   });
+
 
   post = <TSend, TReceive>(url: string, data: TSend) =>
     this.http.post<TReceive>(`${this.endpoint}${url}`, data);

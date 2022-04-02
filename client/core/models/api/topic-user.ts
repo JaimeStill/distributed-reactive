@@ -5,7 +5,7 @@ export interface TopicUser {
   id: number;
   topicId: number;
   userId: number;
-  iAdmin: boolean;
+  isAdmin: boolean;
   isBanned: boolean;
 
   topic?: Topic;

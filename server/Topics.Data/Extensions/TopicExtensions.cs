@@ -143,6 +143,14 @@ public static class TopicExtensions
 
     #region TopicUser
 
+    static IQueryable<TopicUser> SetIncludes(this IQueryable<TopicUser> users) =>
+        users.Include(x => x.Topic);
+
+    static IQueryable<TopicUser> Search(this IQueryable<TopicUser> users, string search) =>
+        users.Where(x =>
+            x.Topic.Name.ToLower().Contains(search.ToLower())
+        );
+
     static IQueryable<User> Search(this IQueryable<User> users, string search) =>
         users.Where(x =>
             x.DisplayName.ToLower().Contains(search.ToLower())
@@ -181,18 +189,18 @@ public static class TopicExtensions
         Search
     );
 
-    public static async Task<QueryResult<Topic>> QueryUserTopics(
+    public static async Task<QueryResult<TopicUser>> QueryUserTopics(
         this AppDbContext db,
         int userId,
         string page,
         string pageSize,
         string search,
         string sort
-    ) => await QueryContainer<Topic>.GenerateQuery(
+    ) => await QueryContainer<TopicUser>.GenerateQuery(
         page, pageSize, search, sort,
         db.TopicUsers
-            .Where(x => x.UserId == userId)
-            .Select(x => x.Topic),
+            .SetIncludes()
+            .Where(x => x.UserId == userId),
         Search
     );
 

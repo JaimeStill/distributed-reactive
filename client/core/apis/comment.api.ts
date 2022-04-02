@@ -9,6 +9,7 @@ import {
 } from '../models';
 
 import {
+  QueryGeneratorService,
   SnackerService,
   SyncService
 } from '../services';
@@ -24,6 +25,7 @@ export class CommentApi {
   api: WebApi;
 
   constructor(
+    private generator: QueryGeneratorService,
     private http: HttpClient,
     private snacker: SnackerService,
     private sync: SyncService,
@@ -32,11 +34,27 @@ export class CommentApi {
     this.api = new WebApi(http, config, snacker, 'comment');
   }
 
+  queryComments = (postId?: number) =>
+    this.generator.generateSource<Comment>(
+      `dateCreated`,
+      postId
+        ? `comment/queryComments/${postId}`
+        : null
+    );
+
+  queryAuthoredComments = (authorId?: number) =>
+    this.generator.generateSource<Comment>(
+      `dateCreated`,
+      authorId
+        ? `comment/queryAuthoredComments/${authorId}`
+        : null
+    );
+
   private comments = new BehaviorSubject<Comment[]>(null);
   comments$ = this.comments.asObservable();
 
   getSubComments = (commentId: number) =>
-    this.api.assign<Comment[]>(
+    this.api.assign(
       `getSubComments/${commentId}`,
       this.comments
     );
@@ -45,7 +63,7 @@ export class CommentApi {
   comment$ = this.comment.asObservable();
 
   getComment = (commentId: number) =>
-    this.api.assign<Comment>(
+    this.api.assign(
       `getComment/${commentId}`,
       this.comment
     );

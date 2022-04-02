@@ -101,7 +101,7 @@ public class TopicController : Controller
     ));
 
     [HttpGet("[action]/{userId}")]
-    [ProducesResponseType(typeof(QueryResult<Topic>), 200)]
+    [ProducesResponseType(typeof(QueryResult<TopicUser>), 200)]
     public async Task<IActionResult> QueryUserTopics(
         [FromRoute]int userId,
         [FromQuery]string page,

@@ -48,7 +48,7 @@ export class UploadApi {
   postUploads$ = this.postUploads.asObservable();
 
   getPostUploads = (postId: number) =>
-    this.api.assign<PostUpload[]>(
+    this.api.assign(
       `getPostUploads/${postId}`,
       this.postUploads
     );
@@ -73,7 +73,7 @@ export class UploadApi {
   topicImage$ = this.topicImage.asObservable();
 
   getTopicImage = (topicId: number) =>
-    this.api.assign<TopicImage>(
+    this.api.assign(
       `getTopicImage/${topicId}`,
       this.topicImage
     );
@@ -98,7 +98,7 @@ export class UploadApi {
   userImage$ = this.userImage.asObservable();
 
   getUserImage = (userId: number) =>
-    this.api.assign<UserImage>(
+    this.api.assign(
       `getUserImage/${userId}`,
       this.userImage
     );

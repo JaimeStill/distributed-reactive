@@ -18,3 +18,15 @@
        [src]="userImg">
   <p class="m4 mat-body-strong">{{userImg}}</p>
 </section>
+<section *ngIf="commentApi.comments$ | async as comments else loading"
+         fxLayout="row | wrap"
+         fxLayoutAlign="start start"
+         class="p8">
+  <section *ngFor="let comment of comments"
+           class="m4 p4 rounded card-outline-accent glow-accent background-card"
+           fxLayout="column"
+           fxLayoutAlign="center center"
+           [style.width.px]="360">
+    <span>{{comment.text}}</span>
+  </section>
+</section>
