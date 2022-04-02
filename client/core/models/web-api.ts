@@ -4,6 +4,34 @@ import { map } from 'rxjs/operators';
 import { SnackerService } from '../services';
 import { ServerConfig } from '../config';
 
+/*
+  This class is still a work in progress.
+  Its intent is to simplify the development of API
+  services (see the ../apis directory).
+
+  Beyond the standard get, getX, and post functions,
+  the following functions have been added:
+
+  assign: call a get and assign the result to the
+          provided stream.
+
+  action: wrap a get call with no return data around
+          a boolean promise. See UploadApi.removeTopicImage.
+
+  send: wrap a post call with a type of provided data
+        around a promise that resolves with the type
+        of data that is received. I.e. POST a Comment
+        and return an integer representing the Id.
+        NOTE: The send and received types can be the same.
+        See CommentApi.saveComment.
+
+  resolve: wrap a post call around a boolean promise. This
+           indicates that there is no returned data, but
+           provides a way to determine when the operation
+           has completed successfully.
+
+*/
+
 export class WebApi {
   private endpoint: string
   constructor(
