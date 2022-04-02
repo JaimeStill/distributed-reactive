@@ -18,6 +18,8 @@ export class SnackerService {
 
   private sendMessage = (message: string) => this.snackbar.open(message, 'Close', this.config);
 
+  error = (err: any) => this.sendErrorMessage(err.error);
+
   setDuration(duration: number) {
     this.config.duration = duration;
   }
